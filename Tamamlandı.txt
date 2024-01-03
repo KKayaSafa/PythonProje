@@ -1,0 +1,2 @@
+Kitap,Kitap oku,09,00
+Odev,Java odevini yap,16,45
