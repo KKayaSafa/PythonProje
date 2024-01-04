@@ -143,7 +143,7 @@ class GorevTakipUygulaması:
             if cevap:
                 yeni_gorev = f"{gorev_adi},{gorev_icerigi},{gorev_saati},{gorev_dakikasi}\n"
 
-                with open("PROJE/GörevListesi.txt", "a") as dosya:
+                with open("GörevListesi.txt", "a") as dosya:
                     dosya.write(yeni_gorev)
 
                 # Treeview'leri güncelle
@@ -178,10 +178,10 @@ class GorevTakipUygulaması:
 
             # Cevap true değer ise silme işlemini gerçekleştir.
             if cevap:
-                with open("PROJE/GörevListesi.txt", "r") as dosya:
+                with open("GörevListesi.txt", "r") as dosya:
                     satırlar = dosya.readlines()
 
-                with open("PROJE/GörevListesi.txt", "w") as dosya:
+                with open("GörevListesi.txt", "w") as dosya:
                     for satır in satırlar:
                         if satır.strip() != ",".join(secilen_gorev):
                             dosya.write(satır)
@@ -214,15 +214,15 @@ class GorevTakipUygulaması:
 
             # Cevap true değer ise tamamlama işlemini gerçekleştir.
             if cevap:
-                with open("PROJE/GörevListesi.txt", "r") as dosya:
+                with open("GörevListesi.txt", "r") as dosya:
                     satırlar = dosya.readlines()
 
-                with open("PROJE/GörevListesi.txt", "w") as dosya:
+                with open("GörevListesi.txt", "w") as dosya:
                     for satır in satırlar:
                         if satır.strip() != ",".join(secilen_gorev):
                             dosya.write(satır)
 
-                with open("PROJE/Tamamlandı.txt", "a") as dosya:
+                with open("Tamamlandı.txt", "a") as dosya:
                     dosya.write(",".join(secilen_gorev) + "\n")
 
                 # Treeview'leri güncelle
@@ -250,15 +250,15 @@ class GorevTakipUygulaması:
 
             # Cevap true değer ise işlemi gerçekleştir.
             if cevap:
-                with open("PROJE/Tamamlandı.txt", "r") as file:
+                with open("Tamamlandı.txt", "r") as file:
                     lines = file.readlines()
 
-                with open("PROJE/Tamamlandı.txt", "w") as file:
+                with open("Tamamlandı.txt", "w") as file:
                     for line in lines:
                         if line.strip() != ",".join(secilen_gorev):
                             file.write(line)
 
-                with open("PROJE/GörevListesi.txt", "a") as file:
+                with open("GörevListesi.txt", "a") as file:
                     file.write(",".join(secilen_gorev) + "\n")
 
                 # Treeview'leri güncelle
@@ -353,10 +353,10 @@ class GorevTakipUygulaması:
 
                     yeni_gorev = f"{gorev_adi_var.get()},{gorev_icerigi_var.get()},{saat},{dakika}\n"
 
-                    with open("PROJE/GörevListesi.txt", "r") as dosya:
+                    with open("GörevListesi.txt", "r") as dosya:
                         satırlar = dosya.readlines()
 
-                    with open("PROJE/GörevListesi.txt", "w") as dosya:
+                    with open("GörevListesi.txt", "w") as dosya:
                         for satır in satırlar:
                             if satır.strip() == ",".join(secilen_gorev):
                                 dosya.write(yeni_gorev)
@@ -397,10 +397,10 @@ class GorevTakipUygulaması:
 
             # Cevap true değer ise işlemi gerçekleştir.
             if cevap:
-                with open("PROJE/Tamamlandı.txt", "r") as file:
+                with open("Tamamlandı.txt", "r") as file:
                     lines = file.readlines()
 
-                with open("PROJE/Tamamlandı.txt", "w") as file:
+                with open("Tamamlandı.txt", "w") as file:
                     for line in lines:
                         if line.strip() != ",".join(selected_gorev):
                             file.write(line)
@@ -422,8 +422,8 @@ class GorevTakipUygulaması:
         self.tamamlanan_gorevler_treeview.delete(*self.tamamlanan_gorevler_treeview.get_children())
 
         # Dosyalardan gelen görevleri saat ve dakika değerlerine göre sırala
-        gorev_listesi = self.siraliGorevListesi("PROJE/GörevListesi.txt")
-        tamamlanan_gorevler = self.siraliGorevListesi("PROJE/Tamamlandı.txt")
+        gorev_listesi = self.siraliGorevListesi("GörevListesi.txt")
+        tamamlanan_gorevler = self.siraliGorevListesi("Tamamlandı.txt")
 
         # Sıralanmış görev listesini treeview'e ekle
         for degerler in gorev_listesi:
